@@ -6,13 +6,20 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
     <bean id="musicBean"
-          class="tanyanskiyArtem.RockMusic">
+          class="tanyanskiyArtem.ClassicalMusic"
+            init-method="doMyDestroy"
+            destroy-method="doMyDestroy"
+            factory-method="getClassicalMusic">
     </bean>
-    <bean id = "musicPlayer"
-    class="tanyanskiyArtem.MusicPlayer">
-    <constructor-arg ref="musicBean"/>
-    </bean>
+    <!--bean id = "musicPlayer"
+    class="tanyanskiyArtem.MusicPlayer"
+          scope="prototype">
+
+    <property name="music" ref="musicBean"/>
+        <property name="name" value="${music.Player.name}"/>
+        <property name="volume" value="${music.Player.volume}"/>
+    </bean-->
 
 </beans>
